@@ -1,6 +1,5 @@
 import { auth } from '@/auth';
 import {
-  getLatestTemplates,
   getTopTemplates,
   getPopularTags,
 } from '@/lib/actions/template-actions';
@@ -10,7 +9,6 @@ import { Separator } from '@/components/ui/separator';
 
 export default async function HomePage() {
   const session = await auth();
-  // const latestTemplates = await getLatestTemplates(5);
   const topTemplates = await getTopTemplates(5);
   const popularTags = await getPopularTags();
 
@@ -31,13 +29,6 @@ export default async function HomePage() {
         )}
       </div>
       <Separator />
-      {/* <section className="w-full">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">
-          Latest Templates
-        </h2>
-        <TemplateCarousel templates={latestTemplates} count={5} />
-      </section>
-      <Separator /> */}
       <section className="w-full">
         <h2 className="text-2xl font-bold mb-4 text-gray-900">
           Our Templates ({topTemplates.length})

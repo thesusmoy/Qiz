@@ -257,18 +257,18 @@ export function UserTemplatesTable() {
               <TableBody>
                 {sortedTemplates.map((template) => {
                   // Create an actions object for this specific template
-                  const actions = {
-                    navigateToPreview: () =>
-                      templateActions.navigateToPreview({
-                        ...templateActions,
-                        template,
-                      }),
-                    navigateToEdit: () =>
-                      templateActions.navigateToEdit({
-                        ...templateActions,
-                        template,
-                      }),
-                  };
+                  // const actions = {
+                  //   navigateToPreview: () =>
+                  //     templateActions.navigateToPreview({
+                  //       ...templateActions,
+                  //       template,
+                  //     }),
+                  //   navigateToEdit: () =>
+                  //     templateActions.navigateToEdit({
+                  //       ...templateActions,
+                  //       template,
+                  //     }),
+                  // };
 
                   return (
                     <TableRow key={template.id}>

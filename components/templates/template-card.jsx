@@ -50,7 +50,7 @@ import {
 import { useTemplateActions } from '@/hooks/use-template-actions';
 
 export function TemplateCard({ template, isOwner, isAdmin }) {
-  const router = useRouter();
+  {% comment %} const router = useRouter(); {% endcomment %}
   const hasSubmitted = template.responses && template.responses.length > 0;
 
   // Use the template actions hook
