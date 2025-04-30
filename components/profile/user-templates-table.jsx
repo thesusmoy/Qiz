@@ -41,10 +41,10 @@ export function UserTemplatesTable() {
 
   // For direct template actions (view, edit)
   // We only need navigating functions so we can create a simplified version
-  const templateActions = useTemplateActions({
-    // No specific template here as we're using it for navigation only
-    shouldRefreshAfterDelete: false,
-  });
+  // const templateActions = useTemplateActions({
+  //   // No specific template here as we're using it for navigation only
+  //   shouldRefreshAfterDelete: false,
+  // });
 
   useEffect(() => {
     async function loadTemplates() {
