@@ -1,0 +1,150 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String
+  email         String         @unique
+  password      String?
+  role          Role          @default(USER)
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  templates     Template[]
+  formResponses FormResponse[]
+  comments    Comment[]
+  likes       Like[]
+  salesforceToken SalesforceToken?
+  apiToken      String?        @unique // API token for Odoo integration
+}
+
+model Template {
+  id          String    @id @default(cuid())
+  title       String
+  description String?   @db.Text
+  topic       String    // From predefined list
+  isPublic    Boolean   @default(false)
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String
+  tags        String[]  // Array of tags
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  questions   Question[]
+  responses   FormResponse[]
+  allowedUsers  AllowedUser[] 
+  image       String?
+    comments    Comment[]
+  likes       Like[]
+
+  @@index([authorId])
+  @@index([title]) // Regular index for basic search
+}
+
+model AllowedUser {
+  id         String   @id @default(cuid())
+  email      String
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId String
+  createdAt  DateTime @default(now())
+
+  @@unique([email, templateId]) // Prevent duplicate access grants
+  @@index([templateId])
+  @@index([email])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Question {
+  id            String    @id @default(cuid())
+  text          String
+  description   String?   @db.Text
+  type          String
+  required      Boolean   @default(false)
+  showInResults Boolean   @default(true)
+  order         Int
+  options       String[]
+  template      Template  @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId    String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  answers     Answer[]
+
+  @@index([templateId])
+}
+
+model FormResponse {
+  id          String    @id @default(cuid())
+  template    Template  @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId  String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  answers     Answer[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([templateId, userId]) // Ensures one response per user per template
+  @@index([templateId])
+  @@index([userId])
+}
+
+model Answer {
+  id              String       @id @default(cuid())
+  question        Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId      String
+  formResponse    FormResponse @relation(fields: [formResponseId], references: [id], onDelete: Cascade)
+  formResponseId  String
+  value           String       @db.Text
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([questionId])
+  @@index([formResponseId])
+}
+
+model Comment {
+  id          String    @id @default(cuid())
+  content     String    @db.Text
+  template    Template  @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId  String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([templateId])
+  @@index([authorId])
+}
+
+model Like {
+  id          String    @id @default(cuid())
+  template    Template  @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId  String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  createdAt   DateTime  @default(now())
+
+  @@unique([templateId, userId]) // One like per user per template
+  @@index([templateId])
+  @@index([userId])
+}
+
+model SalesforceToken {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  accessToken String   @db.Text
+  refreshToken String  @db.Text
+  instanceUrl String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
