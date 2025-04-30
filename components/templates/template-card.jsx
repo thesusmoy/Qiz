@@ -130,7 +130,7 @@ export function TemplateCard({ template, isOwner, isAdmin }) {
             ) : (
               <div className="flex items-center gap-1">
                 <ClipboardEdit className="h-4 w-4" />
-                <span>You haven't submitted</span>
+                <span>You haven&apos;t submitted</span>
               </div>
             )}
           </div>
