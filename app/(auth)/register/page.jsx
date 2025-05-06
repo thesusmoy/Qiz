@@ -6,11 +6,9 @@ export default function RegisterPage() {
     <div className="w-full max-w-md p-8 space-y-4">
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
-          Create an account
+          Start building forms
         </h1>
-        <p className="text-sm text-muted-foreground">
-          Enter your details to create your account
-        </p>
+        <p className="text-sm text-muted-foreground">Create your account</p>
       </div>
       <RegisterForm />
       <p className="text-sm text-muted-foreground text-center">

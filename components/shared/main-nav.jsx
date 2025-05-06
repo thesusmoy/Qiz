@@ -102,13 +102,13 @@ export function MainNav() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white text-black backdrop-blur-xl shadow-md">
+    <header className="sticky top-0 z-50 w-full border-b bg-white text-black dark:bg-gray-900 dark:text-white backdrop-blur-xl shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between gap-6">
           {/* Logo and Brand */}
           <Link
             href="/"
-            className="hidden md:flex items-center gap-2 font-extrabold text-2xl tracking-tight text-black hover:text-gray-700 transition-colors"
+            className="hidden md:flex items-center gap-2 font-extrabold text-2xl tracking-tight text-black hover:text-gray-700 dark:text-white dark:hover:text-gray-300 transition-colors"
           >
             {/* Modern form SVG icon */}
             <svg
@@ -152,8 +152,8 @@ export function MainNav() {
               <>
                 <Link href="/templates" className="hidden md:block">
                   <Button
-                    variant="outline"
-                    className="border-gray-300 bg-white hover:bg-gray-100 "
+                    size="sm"
+                    className="bg-black hover:bg-gray-900 text-white font-semibold dark:bg-white dark:text-black dark:hover:bg-gray-200 dark:hover:text-black"
                   >
                     Templates
                   </Button>
@@ -172,11 +172,11 @@ export function MainNav() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
-                    className="w-64 rounded-2xl shadow-2xl border border-gray-100 bg-white text-black p-2"
+                    className="w-64 rounded-2xl shadow-2xl border bg-white  text-black font-semibold dark:bg-black dark:text-white p-2"
                   >
                     <DropdownMenuItem
                       asChild
-                      className="hover:bg-gray-100 rounded-xl transition flex items-center gap-3 py-3 px-2"
+                      className="hover:bg-gray-100 text-white dark:hover:bg-gray-800 dark:hover:text-white rounded-xl transition flex items-center gap-3 py-3 px-2"
                     >
                       <Link href="/profile" className="w-full cursor-pointer">
                         <div className="flex items-center gap-3">
@@ -184,14 +184,14 @@ export function MainNav() {
                             {user.name?.[0]}
                           </div>
                           <div className="flex flex-col w-full">
-                            <span className="font-semibold truncate text-black text-base">
+                            <span className="font-semibold truncate text-black  text-base dark:text-white dark:group-hover:text-gray-300 group-hover:text-gray-700">
                               {user.name}
                             </span>
-                            <span className="text-xs text-gray-500 mt-0.5 truncate">
+                            <span className="text-xs text-gray-500 mt-0.5 truncate dark:text-gray-400 dark:group-hover:text-gray-300 group-hover:text-gray-700">
                               {user.email}
                             </span>
                             {user.role === 'ADMIN' && (
-                              <span className="text-xs bg-gray-200 text-black px-1.5 py-0.5 rounded mt-1 inline-block font-bold">
+                              <span className="text-xs bg-gray-200 text-black px-1.5 py-0.5 rounded mt-1 inline-block font-bold dark:bg-gray-700 dark:text-white">
                                 Admin
                               </span>
                             )}
@@ -203,7 +203,7 @@ export function MainNav() {
                     {user.role === 'ADMIN' && (
                       <>
                         <DropdownMenuSub>
-                          <DropdownMenuSubTrigger className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 font-semibold text-black transition">
+                          <DropdownMenuSubTrigger className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-700 font-semibold text-black dark:bg-gray-700 dark:text-white transition">
                             <svg
                               className="h-5 w-5 text-black"
                               fill="none"
@@ -225,26 +225,29 @@ export function MainNav() {
                             <span>Admin Panel</span>
                           </DropdownMenuSubTrigger>
                           <DropdownMenuPortal>
-                            <DropdownMenuSubContent className="w-56 rounded-xl bg-white shadow-xl border border-gray-100 p-2">
+                            <DropdownMenuSubContent className="w-56 rounded-xl bg-white dark:bg-black dark:text-white shadow-xl border border-gray-100 dark:border-gray-800 p-4">
                               <DropdownMenuItem
                                 asChild
-                                className="hover:bg-gray-100 rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
+                                className="hover:bg-gray-100  dark:text-white rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
                               >
                                 <Link
                                   href="/admin/users"
                                   className="w-full cursor-pointer flex items-center gap-2"
                                 >
                                   <svg
-                                    className="h-4 w-4 text-gray-500"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
+                                    className="text-gray-500"
+                                    width="100%"
+                                    height="100%"
                                     viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
                                   >
                                     <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 3.13a4 4 0 010 7.75M8 3.13a4 4 0 000 7.75"
+                                      d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
+                                      stroke="currentColor"
+                                      stroke-width="2"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
                                     />
                                   </svg>
                                   Users Management
@@ -252,7 +255,7 @@ export function MainNav() {
                               </DropdownMenuItem>
                               <DropdownMenuItem
                                 asChild
-                                className="hover:bg-gray-100 rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
+                                className="hover:bg-gray-100 dark:text-white rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
                               >
                                 <Link
                                   href="/admin/templates"
@@ -279,7 +282,7 @@ export function MainNav() {
                               </DropdownMenuItem>
                               <DropdownMenuItem
                                 asChild
-                                className="hover:bg-gray-100 rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
+                                className="hover:bg-gray-100 dark:text-white rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
                               >
                                 <Link
                                   href="/admin/responses"
@@ -315,9 +318,9 @@ export function MainNav() {
                       </>
                     )}
                     <DropdownMenuSub>
-                      <DropdownMenuSubTrigger className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 font-semibold text-black transition">
+                      <DropdownMenuSubTrigger className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-700 font-semibold text-black dark:bg-gray-700 dark:text-white transition">
                         <svg
-                          className="h-5 w-5 text-black"
+                          className="h-5 w-5 "
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="2"
@@ -332,10 +335,10 @@ export function MainNav() {
                         <span>My Content</span>
                       </DropdownMenuSubTrigger>
                       <DropdownMenuPortal>
-                        <DropdownMenuSubContent className="w-56 rounded-xl bg-white shadow-xl border border-gray-100 p-2">
+                        <DropdownMenuSubContent className="w-56 rounded-xl bg-white dark:bg-black shadow-xl border border-gray-100 p-2">
                           <DropdownMenuItem
                             asChild
-                            className="hover:bg-gray-100 rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
+                            className="hover:bg-gray-100 rounded-lg px-3 py-2 font-medium text-black dark:text-white flex items-center gap-2"
                           >
                             <Link
                               href="/profile?tab=templates"
@@ -362,7 +365,7 @@ export function MainNav() {
                           </DropdownMenuItem>
                           <DropdownMenuItem
                             asChild
-                            className="hover:bg-gray-100 rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
+                            className="hover:bg-gray-100 dark:text-white rounded-lg px-3 py-2 font-medium text-black flex items-center gap-2"
                           >
                             <Link
                               href="/profile?tab=responses"
@@ -395,17 +398,20 @@ export function MainNav() {
                       </DropdownMenuPortal>
                     </DropdownMenuSub>
                     <DropdownMenuItem className="md:hidden" asChild>
-                      <Link href="/templates" className="w-full cursor-pointer">
+                      <Link
+                        href="/templates"
+                        className="w-full cursor-pointer "
+                      >
                         Templates
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
                       onClick={handleSignOut}
-                      className="cursor-pointer text-red-600 font-semibold hover:bg-red-50 rounded-xl transition py-3 px-2 flex items-center gap-2"
+                      className="cursor-pointer text-gray-500 font-semibold hover:bg-red-50 rounded-xl transition py-3 px-2 flex items-center gap-2"
                     >
                       <svg
-                        className="h-5 w-5 text-red-500"
+                        className="h-5 w-5 text-gray-500"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
@@ -427,9 +433,8 @@ export function MainNav() {
                 <ThemeToggle />
                 <Link href="/login">
                   <Button
-                    variant="outline"
                     size="sm"
-                    className="border-gray-300 font-semibold text-black hover:bg-gray-100"
+                    className="bg-black hover:bg-gray-900 text-white font-semibold dark:bg-white dark:text-black dark:hover:bg-gray-200 dark:hover:text-black"
                   >
                     Sign In
                   </Button>
@@ -437,7 +442,7 @@ export function MainNav() {
                 <Link href="/register" className="hidden sm:block">
                   <Button
                     size="sm"
-                    className="bg-black hover:bg-gray-900 text-white font-semibold"
+                    className="bg-black hover:bg-gray-900 text-white font-semibold dark:bg-white dark:text-black dark:hover:bg-gray-200 dark:hover:text-black"
                   >
                     Sign Up
                   </Button>

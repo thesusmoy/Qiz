@@ -25,6 +25,9 @@ export function FormQuestion({ question, control, disabled = false }) {
       case QUESTION_TYPES.CHECKBOX:
         return (
           <div className="flex items-center space-x-3 pt-2">
+            <span className="text-sm font-medium leading-none">
+              {question.checkboxLabel || 'No'}
+            </span>
             <Checkbox
               checked={field.value === 'true'}
               onCheckedChange={(checked) => field.onChange(checked.toString())}

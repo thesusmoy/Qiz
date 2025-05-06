@@ -30,8 +30,13 @@ export default async function HomePage() {
       </div>
       <Separator />
       <section className="w-full">
-        <h2 className="text-2xl font-bold mb-4 text-gray-900">Our Templates</h2>
-        <TemplateCarousel templates={topTemplates} count={5} />
+        <h2 className="text-2xl font-bold mb-4 text-gray-900">
+          Our Templates ({topTemplates.length})
+        </h2>
+        <TemplateCarousel
+          templates={topTemplates}
+          count={topTemplates.length + 1}
+        />
       </section>
       <Separator />
       <section className="w-full">
