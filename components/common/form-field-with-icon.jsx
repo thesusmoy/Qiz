@@ -12,19 +12,6 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-/**
- * FormFieldWithIcon - A reusable form field with optional icon
- *
- * @param {Object} props
- * @param {Object} props.control - Form control from react-hook-form
- * @param {string} props.name - Field name
- * @param {string} props.label - Field label
- * @param {string} props.description - Field description
- * @param {ReactNode} props.leadingIcon - Icon to show at the beginning of the input
- * @param {ReactNode} props.trailingIcon - Icon to show at the end of the input
- * @param {boolean} props.multiline - Whether to use Textarea instead of Input
- * @param {boolean} props.required - Whether the field is required
- */
 export const FormFieldWithIcon = forwardRef(
   (
     {

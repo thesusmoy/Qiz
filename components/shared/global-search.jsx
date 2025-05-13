@@ -1,4 +1,3 @@
-// components/shared/global-search.jsx
 'use client';
 
 import { Input } from '@/components/ui/input';
@@ -16,8 +15,8 @@ export function GlobalSearch() {
 
   const handleChange = (e) => {
     const newValue = e.target.value;
-    searchParam.setLocalValue(newValue); // Update local value immediately
-    debouncedSearch(newValue); // Debounced URL update
+    searchParam.setLocalValue(newValue);
+    debouncedSearch(newValue);
   };
 
   return (

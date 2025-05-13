@@ -1,4 +1,3 @@
-// hooks/use-template-form.js
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -10,7 +9,7 @@ import { useSubmitTemplate } from '@/hooks/use-submit-template';
 
 export function useTemplateForm(options = {}) {
   const {
-    template = null, // Pass template data for edit mode
+    template = null,
     successMessage = template
       ? 'Template updated successfully'
       : 'Template created successfully',
@@ -23,7 +22,6 @@ export function useTemplateForm(options = {}) {
   const [isUploading, setIsUploading] = useState(false);
   const [questions, setQuestions] = useState(template?.questions || []);
 
-  // Initialize form with template data or empty defaults
   const originalFormValues = useMemo(() => {
     if (!template) {
       return {
@@ -50,17 +48,14 @@ export function useTemplateForm(options = {}) {
     };
   }, [template]);
 
-  // Setup form with validation
   const form = useForm({
     resolver: zodResolver(TemplateSchema),
     defaultValues: originalFormValues,
     mode: 'onChange',
   });
 
-  // For edit mode, track changes
   const formValues = form.watch();
 
-  // Track question changes
   const originalQuestions = useMemo(
     () => JSON.stringify(template?.questions || []),
     [template?.questions]
@@ -84,23 +79,18 @@ export function useTemplateForm(options = {}) {
     }));
   }, [questions]);
 
-  // Use useFormState for form fields
   const { hasChanges: formHasChanges } = useFormState({
     initialValues: originalFormValues,
     currentValues: formValues,
   });
 
-  // Use useFormState for questions
   const { hasChanges: questionsHaveChanges } = useFormState({
     initialValues: normalizedOriginalQuestions,
     currentValues: normalizedCurrentQuestions,
   });
 
-  // Combined changes status - in create mode, always true
-  // In edit mode, only if something changed
   const hasChanges = !isEdit || formHasChanges || questionsHaveChanges;
 
-  // Use our new submission hook
   const { isSubmitting, submitTemplate } = useSubmitTemplate({
     isEdit,
     templateId: template?.id,
@@ -110,10 +100,8 @@ export function useTemplateForm(options = {}) {
     shouldRefreshPage,
   });
 
-  // Create a single variable for disabled state
   const isDisabled = isSubmitting || isUploading;
 
-  // Handle form submission
   const handleSubmit = async () => {
     const formData = form.getValues();
     return await submitTemplate(formData, questions);

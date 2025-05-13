@@ -81,7 +81,6 @@ export default async function ResponseDetailPage({ params }) {
           </div>
           <p className="text-muted-foreground">Form response details</p>
         </div>
-        {/* Remove the back link - it's redundant with breadcrumb navigation */}
       </div>
 
       <div className="flex flex-col md:flex-row gap-6 items-start md:items-center bg-muted/50 rounded-lg p-4 border">

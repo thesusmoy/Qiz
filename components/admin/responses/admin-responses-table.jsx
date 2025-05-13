@@ -121,7 +121,6 @@ export function AdminResponsesTable({ initialResponses }) {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() =>
-                          // Navigate to myResponse tab
                           router.push(
                             `/templates/${response.templateId}?tab=myResponse&responseId=${response.id}`
                           )

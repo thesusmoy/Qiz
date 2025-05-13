@@ -14,7 +14,6 @@ import {
 export default function TemplatesLoading() {
   return (
     <div className="space-y-6">
-      {/* Keep breadcrumb visible as it's static */}
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -29,7 +28,6 @@ export default function TemplatesLoading() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* Keep header visible as it's static */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Templates</h1>
@@ -41,24 +39,20 @@ export default function TemplatesLoading() {
       </div>
 
       <div className="grid grid-cols-[280px_1fr] gap-6">
-        {/* Keep filters visible as they're static until interaction */}
         <div className="space-y-4">
           <TemplateFilters />
         </div>
 
-        {/* Only skeleton-ize the dynamic templates area */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {Array(8)
             .fill(null)
             .map((_, i) => (
               <div key={i} className="rounded-lg border h-[380px]">
-                {/* Image area */}
                 <div className="relative w-full h-[180px]">
                   <Skeleton className="h-full w-full rounded-t-lg" />
                 </div>
 
                 <div className="h-[9.5rem]">
-                  {/* Card Header */}
                   <div className="px-3 py-2 space-y-2">
                     <div className="flex items-start justify-between gap-2">
                       <Skeleton className="h-6 w-3/4" />
@@ -76,7 +70,6 @@ export default function TemplatesLoading() {
                     </div>
                   </div>
 
-                  {/* Card Content */}
                   <div className="px-3 py-1">
                     <div className="flex justify-between items-center gap-2">
                       <Skeleton className="h-5 w-16" />
@@ -85,7 +78,6 @@ export default function TemplatesLoading() {
                   </div>
                 </div>
 
-                {/* Card Footer */}
                 <div className="flex gap-2 items-center justify-between px-2 py-1 border-t">
                   <div className="flex-1 overflow-x-hidden">
                     <div className="flex gap-0.5">

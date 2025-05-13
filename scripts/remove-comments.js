@@ -1,15 +1,11 @@
-// scripts/remove-comments.js
 const fs = require('fs');
 const path = require('path');
 const strip = require('strip-comments');
 
-// Define file extensions to process
 const extensions = ['.js', '.jsx', '.mjs'];
 
-// Define directories to process
 const directories = ['app', 'components', 'hooks', 'lib', 'providers'];
 
-// Directories to exclude
 const excludeDirs = ['node_modules', '.next', '.git'];
 
 function processFile(filePath) {
@@ -17,7 +13,6 @@ function processFile(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
     const strippedContent = strip(content);
 
-    // Only write back if there's a change to avoid unnecessary writes
     if (content !== strippedContent) {
       fs.writeFileSync(filePath, strippedContent, 'utf8');
       console.log(`✅ Processed: ${filePath}`);
@@ -48,7 +43,6 @@ function walkDirectory(dir) {
   });
 }
 
-// Process each directory
 console.log('🔍 Starting to remove comments...');
 directories.forEach((dir) => {
   const dirPath = path.join(process.cwd(), dir);

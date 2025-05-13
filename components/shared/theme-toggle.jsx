@@ -15,12 +15,10 @@ export function ThemeToggle() {
   const { theme, toggleTheme } = useThemeStore();
   const [mounted, setMounted] = useState(false);
 
-  // Handle mounting
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Only render the toggle when mounted (client-side)
   if (!mounted) {
     return <Button variant="ghost" size="icon" disabled />;
   }

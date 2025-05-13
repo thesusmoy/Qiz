@@ -2,22 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
-
-/* .no-scroll {
-  overflow: hidden;
-} */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
 
 @layer utilities {
   .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
   }
 }
 
@@ -99,7 +95,6 @@ body {
   }
 }
 
-/* Custom styles for Swiper */
 .swiper {
   padding: 2rem 1rem !important;
 }
@@ -107,19 +102,16 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
   color: hsl(var(--primary)) !important;
-  /* Make arrows smaller and semi-transparent */
   scale: 0.7;
   opacity: 0.5;
   transition: opacity 0.2s ease;
 }
 
-/* Hover effect for better UX */
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   opacity: 1;
 }
 
-/* Hide default arrow text */
 .swiper-button-next::after,
 .swiper-button-prev::after {
   font-size: 1.5rem !important;

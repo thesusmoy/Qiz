@@ -1,6 +1,5 @@
 import plugin from 'tailwindcss';
 
-/** @type {import('tailwindcss').Config} */
 const config = {
   darkMode: ['class'],
   content: [
@@ -72,7 +71,6 @@ const config = {
   },
   plugins: [
     require('tailwindcss-animate'),
-    // Add custom plugin for scrollbar hiding
     plugin(({ addUtilities }) => {
       addUtilities({
         '.scrollbar-hide': {

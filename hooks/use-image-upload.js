@@ -1,18 +1,10 @@
-// hooks/use-image-upload.js
 'use client';
 
 import { useState, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
-/**
- * Custom hook for handling image uploads to Cloudinary
- * @param {Object} options - Configuration options
- * @param {Function} options.onSuccess - Callback when upload succeeds
- * @param {Function} options.onUploadingChange - Callback to notify uploading state changes
- * @returns {Object} Image upload methods and state
- */
 export function useImageUpload(options = {}) {
   const { onSuccess, onUploadingChange } = options;
 
@@ -68,7 +60,6 @@ export function useImageUpload(options = {}) {
         throw new Error(data.error.message);
       }
 
-      // Call onSuccess if provided
       onSuccess?.(data.secure_url);
 
       toast({

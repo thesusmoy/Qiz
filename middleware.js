@@ -7,7 +7,6 @@ export default auth((req) => {
     req.nextUrl.pathname.startsWith('/login') ||
     req.nextUrl.pathname.startsWith('/register');
 
-  // Redirect authenticated users away from auth pages
   if (isAuthPage) {
     if (isLoggedIn) {
       return NextResponse.redirect(new URL('/', req.nextUrl));
@@ -15,7 +14,6 @@ export default auth((req) => {
     return null;
   }
 
-  // Protect admin routes
   if (req.nextUrl.pathname.startsWith('/admin')) {
     if (!isLoggedIn) {
       return NextResponse.redirect(new URL('/login', req.nextUrl));
@@ -26,7 +24,6 @@ export default auth((req) => {
     }
   }
 
-  // Protect template routes
   if (req.nextUrl.pathname.startsWith('/templates')) {
     if (!isLoggedIn) {
       return NextResponse.redirect(
@@ -38,7 +35,6 @@ export default auth((req) => {
     }
   }
 
-  // Protect form routes
   if (req.nextUrl.pathname.startsWith('/forms')) {
     if (!isLoggedIn) {
       return NextResponse.redirect(new URL('/login', req.nextUrl));
@@ -48,7 +44,6 @@ export default auth((req) => {
   return null;
 });
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

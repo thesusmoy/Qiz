@@ -7,25 +7,6 @@ import { FormActions } from '@/components/ui/form-buttons';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 
-/**
- * SmartForm - A reusable form component with standardized layout and actions
- *
- * @param {Object} props
- * @param {Object} props.form - The react-hook-form instance
- * @param {Function} props.onSubmit - Form submission handler
- * @param {Function} props.onCancel - Optional cancel handler
- * @param {ReactNode} props.children - Form content/fields
- * @param {boolean} props.isSubmitting - Loading state for the form
- * @param {boolean} props.hasChanges - Whether the form has unsaved changes
- * @param {boolean} props.isDisabled - Whether the form inputs should be disabled
- * @param {boolean} props.withCard - Whether to wrap the form in a Card component
- * @param {string} props.submitText - Text for the submit button
- * @param {string} props.submittingText - Text while submitting
- * @param {string} props.noChangesText - Text when no changes detected
- * @param {string} props.className - Additional classes for the form
- * @param {string} props.cardClassName - Additional classes for the card
- * @param {boolean} props.showActionButtons - Whether to show action buttons
- */
 export function SmartForm({
   form,
   onSubmit,
@@ -43,8 +24,8 @@ export function SmartForm({
   showActionButtons = true,
   showCancelButton = true,
   submitIcon,
-  submitButtonClassName = 'min-w-[120px]', // Add submit button class
-  submitButtonVariant = 'default', // Add variant prop
+  submitButtonClassName = 'min-w-[120px]',
+  submitButtonVariant = 'default',
   actionButtonsClassName,
   ...props
 }) {

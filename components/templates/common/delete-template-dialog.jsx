@@ -20,8 +20,6 @@ export function DeleteTemplateDialog({ isOpen, template, onClose, onSuccess }) {
     template,
     onSuccessDelete: onSuccess, // Pass the success callback
     deleteAction: async (templateId) => {
-      // We're using the default deleteTemplate function from the hook
-      // but wrapping it to handle the dialog closing
       const result = await import('@/lib/actions/template-actions').then(
         (mod) => mod.deleteTemplate(templateId)
       );
@@ -30,7 +28,7 @@ export function DeleteTemplateDialog({ isOpen, template, onClose, onSuccess }) {
       }
       return result;
     },
-    shouldRefreshAfterDelete: false, // Let the parent component handle updates
+    shouldRefreshAfterDelete: false,
   });
 
   if (!template) return null;

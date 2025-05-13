@@ -14,28 +14,16 @@ import {
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { EmptyTemplateCard } from '../../templates/common/empty-template-card';
+import { useCarouselConfig } from '@/hooks/use-carousel-config';
 
 export function TemplateCarousel({ templates, count = 5 }) {
-  const emptySlots = Math.max(0, count - templates.length);
-  const placeholders = Array(emptySlots).fill(null);
+  const { placeholders, carouselConfig } = useCarouselConfig({
+    items: templates,
+    maxSlots: count,
+  });
 
   return (
-    <Swiper
-      modules={[Navigation, Pagination, A11y]}
-      spaceBetween={30}
-      slidesPerView={1}
-      navigation
-      pagination={{ clickable: true }}
-      breakpoints={{
-        640: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-      }}
-      className="w-full"
-    >
+    <Swiper {...carouselConfig}>
       {templates.map((template) => (
         <SwiperSlide key={template.id}>
           <Card className="h-full">

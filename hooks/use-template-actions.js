@@ -1,4 +1,3 @@
-// hooks/use-template-actions.js
 'use client';
 
 import { useState } from 'react';
@@ -6,16 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { deleteTemplate } from '@/lib/actions/template-actions';
 
-/**
- * Custom hook for managing template actions like delete, copy link, etc.
- * @param {Object} options - Configuration options
- * @param {Object} options.template - The template object to perform actions on
- * @param {Function} options.onSuccessDelete - Callback to run after successful deletion
- * @param {boolean} options.shouldNavigateAfterDelete - Whether to navigate after deletion
- * @param {string} options.navigatePath - Path to navigate to after deletion
- * @param {boolean} options.shouldRefreshAfterDelete - Whether to refresh the page after deletion
- * @returns {Object} Action handlers and state
- */
 export function useTemplateActions(options = {}) {
   const {
     template,
@@ -23,23 +12,17 @@ export function useTemplateActions(options = {}) {
     shouldNavigateAfterDelete = false,
     navigatePath = '/templates',
     shouldRefreshAfterDelete = true,
-    deleteAction = deleteTemplate, // Can be admin's deleteTemplate or regular
+    deleteAction = deleteTemplate,
   } = options;
 
   const router = useRouter();
   const { toast } = useToast();
 
-  // Deletion state
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Copy link state
   const [copied, setCopied] = useState(false);
 
-  /**
-   * Handles template deletion
-   * @returns {Promise<boolean>} Success status
-   */
   const handleDelete = async () => {
     if (!template?.id) {
       toast({
@@ -68,7 +51,6 @@ export function useTemplateActions(options = {}) {
         description: 'Template deleted successfully',
       });
 
-      // Handle post-deletion actions
       if (onSuccessDelete) {
         onSuccessDelete(template.id);
       }
@@ -95,11 +77,6 @@ export function useTemplateActions(options = {}) {
     }
   };
 
-  /**
-   * Copies the template link to clipboard
-   * @param {string} tabParam - Optional tab parameter for the copied URL
-   * @returns {Promise<boolean>} Success status
-   */
   const copyLink = async (tabParam = 'myResponse') => {
     if (!template?.id) return false;
 
@@ -125,46 +102,31 @@ export function useTemplateActions(options = {}) {
     }
   };
 
-  /**
-   * Navigates to edit template page
-   */
   const navigateToEdit = () => {
     if (!template?.id) return;
     router.push(`/templates/${template.id}/edit`);
   };
 
-  /**
-   * Navigates to view template responses
-   */
   const navigateToResponses = () => {
     if (!template?.id) return;
     router.push(`/templates/${template.id}?tab=results`);
   };
 
-  /**
-   * Navigates to fill form/update response
-   */
   const navigateToForm = () => {
     if (!template?.id) return;
     router.push(`/templates/${template.id}?tab=myResponse`);
   };
 
-  /**
-   * Navigates to preview template
-   */
   const navigateToPreview = () => {
     if (!template?.id) return;
     router.push(`/templates/${template.id}`);
   };
 
   return {
-    // State
     showDeleteDialog,
     setShowDeleteDialog,
     isDeleting,
     copied,
-
-    // Actions
     handleDelete,
     copyLink,
     navigateToEdit,
@@ -172,7 +134,6 @@ export function useTemplateActions(options = {}) {
     navigateToForm,
     navigateToPreview,
 
-    // Helper method for dialog
     openDeleteDialog: () => setShowDeleteDialog(true),
     closeDeleteDialog: () => setShowDeleteDialog(false),
   };

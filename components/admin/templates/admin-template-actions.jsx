@@ -22,7 +22,6 @@ import { deleteTemplate } from '@/lib/actions/admin-actions';
 import { useTemplateActions } from '@/hooks/use-template-actions';
 
 export function AdminTemplateActions({ template }) {
-  // Use the template actions hook with admin-specific delete function
   const {
     showDeleteDialog,
     setShowDeleteDialog,
@@ -34,7 +33,7 @@ export function AdminTemplateActions({ template }) {
     openDeleteDialog,
   } = useTemplateActions({
     template,
-    deleteAction: deleteTemplate, // Use admin delete function
+    deleteAction: deleteTemplate,
     shouldRefreshAfterDelete: true,
   });
 

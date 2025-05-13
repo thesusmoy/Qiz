@@ -1,4 +1,3 @@
-// app/(main)/templates/[templateId]/loading.jsx
 import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
 import {
@@ -13,7 +12,6 @@ import {
 export default function TemplateLoading() {
   return (
     <div className="container max-w-3xl py-6 space-y-6">
-      {/* Keep breadcrumb visible as it's static except for the template title */}
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -36,15 +34,12 @@ export default function TemplateLoading() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* Template header */}
       <div>
         <Skeleton className="h-8 w-3/4 mb-2" />
         <Skeleton className="h-5 w-full" />
       </div>
 
-      {/* Tabs skeleton */}
       <div className="space-y-6">
-        {/* Tab navigation */}
         <div className="border-b">
           <div className="flex gap-4">
             <Skeleton className="h-10 w-28" />
@@ -53,11 +48,8 @@ export default function TemplateLoading() {
           </div>
         </div>
 
-        {/* Tab content area */}
         <div className="space-y-6">
-          {/* Overview tab content */}
           <div className="space-y-6">
-            {/* Template info card */}
             <div className="rounded-md border p-4 space-y-4">
               <div className="flex items-center justify-between">
                 <Skeleton className="h-5 w-40" />
@@ -79,7 +71,6 @@ export default function TemplateLoading() {
               </div>
             </div>
 
-            {/* Questions section */}
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Questions</h3>
               {Array(3)
@@ -95,7 +86,6 @@ export default function TemplateLoading() {
                 ))}
             </div>
 
-            {/* Action buttons */}
             <div className="flex gap-3">
               <Skeleton className="h-10 w-32" />
               <Skeleton className="h-10 w-32" />

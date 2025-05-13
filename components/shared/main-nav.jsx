@@ -80,14 +80,12 @@ export function MainNav() {
   );
 
   const handleSignOut = async () => {
-    // Store the current path with user ID as part of the key
     const currentPath = window.location.pathname + window.location.search;
     if (
       currentPath !== '/' &&
       currentPath !== '/login' &&
       currentPath !== '/register'
     ) {
-      // Store both the user's email and the path
       if (user?.email) {
         localStorage.setItem(
           `returnPath_${encodeURIComponent(user.email)}`,
@@ -105,12 +103,10 @@ export function MainNav() {
     <header className="sticky top-0 z-50 w-full border-b bg-white text-black dark:bg-gray-900 dark:text-white backdrop-blur-xl shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between gap-6">
-          {/* Logo and Brand */}
           <Link
             href="/"
             className="hidden md:flex items-center gap-2 font-extrabold text-2xl tracking-tight text-black hover:text-gray-700 dark:text-white dark:hover:text-gray-300 transition-colors"
           >
-            {/* Modern form SVG icon */}
             <svg
               width="32"
               height="32"
@@ -126,7 +122,6 @@ export function MainNav() {
             QIZ
           </Link>
 
-          {/* Search and Topic Filter */}
           <div className="flex-1 flex gap-3 max-w-full md:max-w-2xl items-center">
             <GlobalSearch />
             <div className="hidden sm:flex shrink-0">
@@ -146,7 +141,6 @@ export function MainNav() {
             </div>
           </div>
 
-          {/* Navigation and User Controls */}
           <nav className="flex items-center gap-2 md:gap-4 shrink-0">
             {user ? (
               <>
@@ -159,7 +153,6 @@ export function MainNav() {
                   </Button>
                 </Link>
                 <ThemeToggle />
-                {/* User Dropdown Menu */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button

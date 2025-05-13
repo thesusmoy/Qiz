@@ -88,7 +88,6 @@ export function UserResponsesTable() {
           description: result.error,
         });
       } else {
-        // Remove the deleted response from the state
         setResponses(responses.filter((r) => r.id !== responseToDelete.id));
 
         toast({
@@ -108,7 +107,6 @@ export function UserResponsesTable() {
     }
   }
 
-  // Handle sorting
   const handleSort = (column) => {
     setSorting((prev) => ({
       column,
@@ -117,11 +115,9 @@ export function UserResponsesTable() {
     }));
   };
 
-  // Sort responses
   const sortedResponses = [...responses].sort((a, b) => {
     const { column, direction } = sorting;
 
-    // Special handling for template title
     if (column === 'title') {
       const titleA = a.template?.title || '';
       const titleB = b.template?.title || '';
@@ -130,7 +126,6 @@ export function UserResponsesTable() {
         : titleB.localeCompare(titleA);
     }
 
-    // For dates
     if (column === 'createdAt' || column === 'updatedAt') {
       const dateA = new Date(a[column]);
       const dateB = new Date(b[column]);
@@ -140,7 +135,6 @@ export function UserResponsesTable() {
     return 0;
   });
 
-  // Helper for sort indicator
   const getSortIcon = (column) => {
     if (sorting.column !== column)
       return <ArrowUpDown className="h-4 w-4 ml-1" />;
@@ -283,7 +277,6 @@ export function UserResponsesTable() {
           </div>
         )}
       </CardContent>
-      {/* Delete confirmation dialog */}
       <AlertDialog
         open={!!responseToDelete}
         onOpenChange={(open) => !open && setResponseToDelete(null)}

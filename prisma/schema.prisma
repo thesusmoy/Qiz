@@ -21,18 +21,18 @@ model User {
   comments    Comment[]
   likes       Like[]
   salesforceToken SalesforceToken?
-  apiToken      String?        @unique // API token for Odoo integration
+  apiToken      String?        @unique
 }
 
 model Template {
   id          String    @id @default(cuid())
   title       String
   description String?   @db.Text
-  topic       String    // From predefined list
+  topic       String    
   isPublic    Boolean   @default(false)
   author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String
-  tags        String[]  // Array of tags
+  tags        String[]  
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   questions   Question[]
@@ -43,7 +43,7 @@ model Template {
   likes       Like[]
 
   @@index([authorId])
-  @@index([title]) // Regular index for basic search
+  @@index([title]) 
 }
 
 model AllowedUser {
@@ -53,7 +53,7 @@ model AllowedUser {
   templateId String
   createdAt  DateTime @default(now())
 
-  @@unique([email, templateId]) // Prevent duplicate access grants
+  @@unique([email, templateId]) 
   @@index([templateId])
   @@index([email])
 }
@@ -91,7 +91,7 @@ model FormResponse {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  @@unique([templateId, userId]) // Ensures one response per user per template
+  @@unique([templateId, userId]) 
   @@index([templateId])
   @@index([userId])
 }
@@ -132,7 +132,7 @@ model Like {
   userId      String
   createdAt   DateTime  @default(now())
 
-  @@unique([templateId, userId]) // One like per user per template
+  @@unique([templateId, userId]) 
   @@index([templateId])
   @@index([userId])
 }

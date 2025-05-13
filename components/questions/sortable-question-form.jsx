@@ -63,13 +63,12 @@ export function SortableQuestionForm({
                   placeholder="Question Title"
                   value={initialData.text || ''}
                   onChange={(e) => onChange({ text: e.target.value })}
-                  onBlur={() => setTouched(true)} // Mark as touched on blur
+                  onBlur={() => setTouched(true)}
                 />
               </FormControl>
-              {touched &&
-                !initialData.text && ( // Only show validation if touched
-                  <FormMessage>Question title is required</FormMessage>
-                )}
+              {touched && !initialData.text && (
+                <FormMessage>Question title is required</FormMessage>
+              )}
             </FormItem>
 
             <FormItem>

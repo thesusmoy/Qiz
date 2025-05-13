@@ -1,4 +1,3 @@
-// hooks/use-submit-template.js
 'use client';
 
 import { useState, useCallback } from 'react';
@@ -7,11 +6,6 @@ import { useToast } from '@/hooks/use-toast';
 import { useQuestionValidation } from '@/hooks/use-question-validation';
 import { createTemplate, updateTemplate } from '@/lib/actions/template-actions';
 
-/**
- * Hook for handling template form submission
- * @param {Object} options - Configuration options
- * @returns {Object} Submission utilities and state
- */
 export function useSubmitTemplate(options = {}) {
   const {
     isEdit = false,
@@ -32,27 +26,18 @@ export function useSubmitTemplate(options = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { validateQuestions } = useQuestionValidation();
 
-  /**
-   * Prepares template data for submission
-   * @param {Object} formData - Form field values
-   * @param {Array} questions - Template questions
-   * @returns {FormData} Prepared form data
-   */
   const prepareTemplateData = useCallback(
     (formData, questions) => {
       const fd = new FormData();
 
-      // Add template ID for edit operations
       if (isEdit && templateId) {
         fd.append('id', templateId);
       }
 
-      // Add form fields
       Object.entries(formData).forEach(([key, value]) => {
         fd.append(key, value !== undefined ? value : '');
       });
 
-      // Add questions
       fd.append('questions', JSON.stringify(questions));
 
       return fd;
@@ -60,15 +45,8 @@ export function useSubmitTemplate(options = {}) {
     [isEdit, templateId]
   );
 
-  /**
-   * Submits the template form
-   * @param {Object} formData - Form field values
-   * @param {Array} questions - Template questions
-   * @returns {Promise<Object>} Submission result
-   */
   const submitTemplate = useCallback(
     async (formData, questions) => {
-      // Validate questions first
       if (!validateQuestions(questions)) {
         return false;
       }
@@ -76,13 +54,10 @@ export function useSubmitTemplate(options = {}) {
       try {
         setIsSubmitting(true);
 
-        // Call any pre-submission callback
         onSubmitStart?.();
 
-        // Prepare form data
         const fd = prepareTemplateData(formData, questions);
 
-        // Submit to appropriate endpoint based on mode
         const result = await (isEdit ? updateTemplate(fd) : createTemplate(fd));
 
         if (result.error) {
@@ -95,7 +70,6 @@ export function useSubmitTemplate(options = {}) {
           return false;
         }
 
-        // Success case
         toast({
           title: 'Success',
           description: successMessage,
@@ -103,7 +77,6 @@ export function useSubmitTemplate(options = {}) {
 
         onSubmitSuccess?.(result.data);
 
-        // Handle navigation
         if (shouldRefreshPage) {
           router.refresh();
         }

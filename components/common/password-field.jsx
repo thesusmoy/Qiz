@@ -4,9 +4,6 @@ import { useState } from 'react';
 import { Eye, EyeOff, Lock } from 'lucide-react';
 import { FormFieldWithIcon } from '@/components/common/form-field-with-icon';
 
-/**
- * PasswordField - A specialized field for password entry with toggle visibility
- */
 export function PasswordField({
   control,
   name,

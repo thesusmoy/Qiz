@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export function ResponseSummary({ aggregatedData, responseCount, isLoading }) {
-  // Helper function to check question types in a case-insensitive way
   const isNumberType = (type) => {
     if (!type) return false;
     const lowerType = type.toLowerCase();
@@ -141,7 +140,6 @@ export function ResponseSummary({ aggregatedData, responseCount, isLoading }) {
                     </div>
                   )}
 
-                  {/* CHECKBOX type question */}
                   {isCheckboxType(question.type) && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="bg-muted p-4 rounded-lg">

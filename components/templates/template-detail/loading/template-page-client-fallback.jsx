@@ -7,9 +7,7 @@ export function TemplatePageClientFallback({ templateId }) {
   const router = useRouter();
 
   useEffect(() => {
-    // Wait a moment for session to establish
     const timer = setTimeout(() => {
-      // Refresh to same URL but without the special parameter
       router.refresh();
       router.push(`/templates/${templateId}`);
     }, 1000);

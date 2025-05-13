@@ -13,7 +13,6 @@ import {
 export default function EditTemplateLoading() {
   return (
     <div className="container max-w-3xl py-6 space-y-6">
-      {/* Keep the breadcrumb structure visible but with skeleton title */}
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -38,7 +37,6 @@ export default function EditTemplateLoading() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* Keep the title and description visible as it's static */}
       <div>
         <h1 className="text-2xl font-bold">Edit Template</h1>
         <p className="text-muted-foreground">
@@ -46,9 +44,7 @@ export default function EditTemplateLoading() {
         </p>
       </div>
 
-      {/* Form skeleton */}
       <div className="space-y-8">
-        {/* Image upload section */}
         <div className="flex items-center gap-4">
           <Skeleton className="w-40 h-40 rounded-lg" />
           <div className="space-y-2">
@@ -57,7 +53,6 @@ export default function EditTemplateLoading() {
           </div>
         </div>
 
-        {/* Template details */}
         <div className="space-y-4">
           <div className="space-y-2">
             <Skeleton className="h-5 w-20" />
@@ -69,26 +64,22 @@ export default function EditTemplateLoading() {
           </div>
         </div>
 
-        {/* Topic */}
         <div className="space-y-2">
           <Skeleton className="h-5 w-20" />
           <Skeleton className="h-10 w-full" />
         </div>
 
-        {/* Tags */}
         <div className="space-y-2">
           <Skeleton className="h-5 w-16" />
           <Skeleton className="h-10 w-full" />
         </div>
 
-        {/* Questions section */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-medium">Questions</h3>
             <Skeleton className="h-10 w-[140px]" />
           </div>
 
-          {/* Question cards */}
           {Array(2)
             .fill(null)
             .map((_, index) => (
@@ -114,7 +105,6 @@ export default function EditTemplateLoading() {
             ))}
         </div>
 
-        {/* Form buttons */}
         <div className="flex items-center gap-4">
           <Skeleton className="h-10 w-[100px]" />
           <Skeleton className="h-10 w-[100px]" />

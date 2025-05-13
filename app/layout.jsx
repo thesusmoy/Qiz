@@ -38,13 +38,13 @@ export const metadata = {
     'team',
     'organization',
   ],
-  authors: [{ name: 'QIZ Platform Team', url: 'https://qizplatform.com' }],
+  authors: [{ name: 'QIZ Platform Team', url: 'https://qiz-beta.vercel.app' }],
   creator: 'QIZ Platform',
   openGraph: {
     title: 'QIZ Platform – Customizable Forms & Surveys SaaS',
     description:
       'Create, manage, and analyze customizable forms, quizzes, and surveys with QIZ Platform. Secure, scalable, and user-friendly SaaS for organizations and teams.',
-    url: 'https://qizplatform.com',
+    url: 'https://qiz-beta.vercel.app',
     siteName: 'QIZ Platform',
     images: [
       {
@@ -67,7 +67,7 @@ export const metadata = {
     images: ['/images/og-image.png'],
   },
   themeColor: '#6366f1',
-  manifest: '/site.webmanifest',
+  manifest: '',
 };
 
 export default async function RootLayout({ children }) {
@@ -90,7 +90,7 @@ export default async function RootLayout({ children }) {
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
             name: 'QIZ Platform',
-            url: 'https://qizplatform.com',
+            url: 'https://qiz-beta.vercel.app',
             description:
               'Create, manage, and analyze customizable forms, quizzes, and surveys with QIZ Platform. Secure, scalable, and user-friendly SaaS for organizations and teams.',
             applicationCategory: 'BusinessApplication',
@@ -104,7 +104,7 @@ export default async function RootLayout({ children }) {
             author: {
               '@type': 'Organization',
               name: 'QIZ Platform Team',
-              url: 'https://qizplatform.com',
+              url: 'https://qiz-beta.vercel.app',
             },
             contactPoint: {
               '@type': 'ContactPoint',

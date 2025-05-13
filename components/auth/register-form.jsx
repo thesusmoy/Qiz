@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
-import { SubmitButton } from '@/components/ui/form-buttons'; // Import the SubmitButton component
+import { SubmitButton } from '@/components/ui/form-buttons';
 import { useToast } from '@/hooks/use-toast';
 import { registerUser } from '@/lib/actions/auth';
 import { RegisterSchema } from '@/lib/utils/validators';
@@ -144,7 +144,6 @@ export function RegisterForm() {
           )}
         />
 
-        {/* Replace the Button with SubmitButton */}
         <SubmitButton
           isSubmitting={isLoading}
           isDisabled={isLoading}
@@ -159,7 +158,6 @@ export function RegisterForm() {
           onClick={() => signIn('google')}
           className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-md py-2 mt-2 hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-white"
         >
-          {/* Google icon SVG here */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24"

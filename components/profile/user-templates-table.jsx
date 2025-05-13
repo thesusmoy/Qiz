@@ -39,13 +39,6 @@ export function UserTemplatesTable() {
     direction: 'desc',
   });
 
-  // For direct template actions (view, edit)
-  // We only need navigating functions so we can create a simplified version
-  // const templateActions = useTemplateActions({
-  //   // No specific template here as we're using it for navigation only
-  //   shouldRefreshAfterDelete: false,
-  // });
-
   useEffect(() => {
     async function loadTemplates() {
       setIsLoading(true);
@@ -82,7 +75,6 @@ export function UserTemplatesTable() {
     });
   };
 
-  // Handle sorting
   const handleSort = (column) => {
     setSorting((prev) => ({
       column,
@@ -91,11 +83,9 @@ export function UserTemplatesTable() {
     }));
   };
 
-  // Sort templates
   const sortedTemplates = [...templates].sort((a, b) => {
     const { column, direction } = sorting;
 
-    // Sorting logic remains unchanged
     if (column === 'title') {
       return direction === 'asc'
         ? a.title.localeCompare(b.title)
@@ -125,7 +115,6 @@ export function UserTemplatesTable() {
     return 0;
   });
 
-  // Helper for sort indicator
   const getSortIcon = (column) => {
     if (sorting.column !== column)
       return <ArrowUpDown className="h-4 w-4 ml-1" />;
@@ -149,7 +138,6 @@ export function UserTemplatesTable() {
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          // Loading skeleton remains unchanged
           <div className="rounded-md border">
             <Table>
               <TableHeader>
@@ -256,20 +244,6 @@ export function UserTemplatesTable() {
               </TableHeader>
               <TableBody>
                 {sortedTemplates.map((template) => {
-                  // Create an actions object for this specific template
-                  // const actions = {
-                  //   navigateToPreview: () =>
-                  //     templateActions.navigateToPreview({
-                  //       ...templateActions,
-                  //       template,
-                  //     }),
-                  //   navigateToEdit: () =>
-                  //     templateActions.navigateToEdit({
-                  //       ...templateActions,
-                  //       template,
-                  //     }),
-                  // };
-
                   return (
                     <TableRow key={template.id}>
                       <TableCell className="font-medium">

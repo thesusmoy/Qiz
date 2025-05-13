@@ -52,11 +52,9 @@ export function LoginForm() {
       return { success: true };
     };
 
-    // Handle submission with our custom hook
     await handleSubmit(loginUser, data, {
       customSuccessMessage: 'You have successfully logged in.',
       onSuccess: async () => {
-        // Redirect logic remains the same
         await update();
         await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -93,9 +91,9 @@ export function LoginForm() {
       submittingText="Signing in..."
       showCancelButton={false}
       withCard={false}
-      submitIcon={LogIn} // Add login icon for consistency
-      submitButtonClassName="w-full" // Make button full width like register form
-      actionButtonsClassName="flex justify-center" // Center the button
+      submitIcon={LogIn}
+      submitButtonClassName="w-full"
+      actionButtonsClassName="flex justify-center"
     >
       <FormSection>
         <FormFieldWithIcon
@@ -119,7 +117,6 @@ export function LoginForm() {
         onClick={() => signIn('google')}
         className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-md py-2 mt-2 hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-white"
       >
-        {/* Google icon SVG here */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="24"
